@@ -6,13 +6,14 @@ use std::collections::HashMap;
 use tokio::fs;
 use url::Url;
 
+use crate::ExtraArgs;
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct DiffConfig {
     #[serde(flatten)]
     pub profiles: HashMap<String, DiffProfile>,
 }
 
-pub struct DiffArgs {}
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct DiffProfile {
     pub req1: RequestProfile,
@@ -61,7 +62,7 @@ impl DiffConfig {
 }
 
 impl DiffProfile {
-    pub async fn diff(&self, _args: DiffArgs) -> Result<String> {
+    pub async fn diff(&self, args: ExtraArgs) -> Result<String> {
         // let res1 = req1.send(&args).await?;
         // let res2 = req2.send(&args).await?;
 
@@ -70,6 +71,8 @@ impl DiffProfile {
 
         // text_diff(&text1, &text2)
 
-        todo!()
+        println!("profile: {:?}", self);
+        println!("args: {:?}", args);
+        Ok("".to_string())
     }
 }
